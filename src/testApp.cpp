@@ -118,7 +118,7 @@ void testApp::setup() {
     rate = 2;
 	grainLength = 0.05;
     pos = 0;
-	current=3;
+	current=0;
 	
 	//fft.setup(1024, 512, 256);
 	//oct.setup(44100, 1024, 10);
@@ -146,7 +146,21 @@ void testApp::update(){
 			farneback.setPolyN( panel.getValueF("polyN") );
 			farneback.setPolySigma( panel.getValueF("polySigma") );
 			farneback.setUseGaussian(panel.getValueB("OPTFLOW_FARNEBACK_GAUSSIAN"));
-			
+			dotSize = panel.getValueF("dotSize");
+            dotRandomness = panel.getValueF("dotRandomness");
+            flowNeeded = panel.getValueF("flowNeeded");
+            smoothAmount = panel.getValueF("smoothAmount");
+            coneHeight = panel.getValueF("coneHeight");
+            
+            brightnessFade = panel.getValueF("brightnessFade");
+            brightnessFalloff = panel.getValueF("brightnessFalloff");
+            
+            spacing = panel.getValueF("spacing");
+            spacing2 = panel.getValueF("spacing2");
+            spacing3 = panel.getValueF("spacing3");
+            spacing4 = panel.getValueF("spacing4");
+            spacing5 = panel.getValueF("spacing5");
+
 		} else {
 			curFlow = &pyrLk;
 			pyrLk.setMaxFeatures( panel.getValueI("maxFeatures") );
@@ -155,6 +169,26 @@ void testApp::update(){
 			pyrLk.setWindowSize( panel.getValueI("winSize") );
 			pyrLk.setMaxLevel( panel.getValueI("maxLevel") );
 		}
+        
+        if(panel.getCurrentPanelName()== "Optical Flow"){
+            demo = 0;
+        }
+        if(panel.getCurrentPanelName()== "Demo 1"){
+            demo = 1;
+        } 
+        if(panel.getCurrentPanelName()== "Demo 2"){
+            demo = 2;
+        } 
+        if(panel.getCurrentPanelName()== "Demo 3"){
+            demo = 3;
+        } 
+        if(panel.getCurrentPanelName()== "Demo 4"){
+            demo = 4;
+        } 
+        
+        if(panel.getCurrentPanelName()== "Demo 5"){
+            demo = 5;
+        } 
 		
 		//check it out that that you can use Flow polymorphically
 		curFlow->calcOpticalFlow(camera);
@@ -162,12 +196,12 @@ void testApp::update(){
 }
 
 void testApp::draw(){
-	ofBackground(0);
+	bg.draw(0,0);
 		
 	ofSetColor(255);
 	camera.draw(400,100,640,480);
     ofVec2f flow = farneback.getAverageFlow();
-    pos = double(ofMap(flow.y, -3,3,0.05,0.1));
+    pos = double(ofMap(flow.y, -3,3,0,0.1));
 	curFlow->draw(400,100,640,480);
 	
 }
