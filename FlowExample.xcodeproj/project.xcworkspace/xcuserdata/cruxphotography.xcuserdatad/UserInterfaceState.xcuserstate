@@ -2142,9 +2142,9 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>361252598.61842501</real>
-		<string>{5298, 683}</string>
-		<string>{5857, 0}</string>
+		<real>361298607.46452701</real>
+		<string>{5670, 615}</string>
+		<string>{5863, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -2852,15 +2852,15 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>167</integer>
+					<integer>179</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>165</integer>
+					<integer>177</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>164</integer>
+					<integer>176</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -2879,8 +2879,8 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{3101, 600}</string>
-		<real>361242570.082955</real>
+		<string>{1638, 776}</string>
+		<real>361298449.21360499</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -2891,15 +2891,15 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>167</integer>
+					<integer>179</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>164</integer>
+					<integer>177</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>165</integer>
+					<integer>176</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -2918,8 +2918,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>361243093.41508102</real>
-		<string>{0, 712}</string>
+		<string>{42345, 723}</string>
+		<real>361298602.38180202</real>
 		<integer>0</integer>
 		<dict>
 			<key>$class</key>
@@ -3264,7 +3264,7 @@
 				<integer>274</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>361252338.45717102</real>
+			<real>361298148.117764</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -3275,7 +3275,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 8:52 PM</string>
+		<string>Today at 9:35 AM</string>
 		<integer>234</integer>
 		<string>openFrameworks</string>
 		<dict>
@@ -3413,7 +3413,7 @@
 				<integer>287</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/cruxphotography/Development/of_0071_osx_release/addons/ofxCv/OpticalFlow/src/testApp.cpp</string>
+		<string>file://localhost/Users/cruxphotography/Development/of_0071_osx_release/addons/ofxCv/OpticalFlow/FlowExample.xcodeproj/project.xcworkspace/xcuserdata/cruxphotography.xcuserdatad/UserInterfaceState.xcuserstate</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -3431,7 +3431,7 @@
 				<integer>289</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/cruxphotography/Development/of_0071_osx_release/addons/ofxCv/OpticalFlow/FlowExample.xcodeproj/project.xcworkspace/xcuserdata/cruxphotography.xcuserdatad/UserInterfaceState.xcuserstate</string>
+		<string>file://localhost/Users/cruxphotography/Development/of_0071_osx_release/addons/ofxCv/OpticalFlow/src/testApp.cpp</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4166,9 +4166,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>361252598.61960101</real>
-		<string>{5298, 683}</string>
-		<string>{5857, 0}</string>
+		<real>361298607.46553099</real>
+		<string>{5670, 615}</string>
+		<string>{5863, 0}</string>
 		<string>testApp::draw()</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
