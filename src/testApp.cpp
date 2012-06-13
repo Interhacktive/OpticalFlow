@@ -64,7 +64,7 @@ void testApp::setup() {
     
     
     error.loadImage("images/error.png");
-    HAlogo.loadImage("images/mask.jpg");
+    HAlogo.loadImage("images/mask1.jpg");
     particleBuffer.allocate(640, 480,OF_IMAGE_GRAYSCALE);
     bg.loadImage("images/bg.jpg");
     ofEnableAlphaBlending();
@@ -196,14 +196,310 @@ void testApp::update(){
 }
 
 void testApp::draw(){
-	bg.draw(0,0);//slight change
 		
 	ofSetColor(255);
-	camera.draw(400,100,640,480);
+    bg.draw(0,0);//slight change
+	
+	//camera.draw(400,100,640,480);
     ofVec2f flow = farneback.getAverageFlow();
     pos = double(ofMap(flow.y, -3,3,0,0.1));
-	curFlow->draw(400,100,640,480);
+//	curFlow->draw(400,100,640,480);
 	
+    
+     ofPushMatrix();
+     
+     ofScale(1,1,2);
+     //ofTranslate(ofGetWidth(),0);
+     ofTranslate((ofGetWidth()/2) +320, ofGetHeight()/2 - 240, 150);
+     ofRotateY(180);
+     ofSetColor(255);
+     //camera.draw(0,0,640,480);
+     //HAlogo.draw(0,0);
+    
+    if(demo < 2){
+        if(farneback.hasFlow){
+            
+            for(int x = 0; x< camera.width;x+=spacing){
+                for(int y = 0; y< camera.height;y+=spacing){
+                    
+                    
+                    ofColor singleColor = HAlogo.getColor(x*2,y*2);
+                    
+                    if(singleColor == ofColor(0,0,0)){
+                        
+                        ofVec2f flow = ofVec2f(farneback.getFlowPosition(x,y));  
+                        
+                        
+                        //---vector field Optical Flow
+                        if(demo == 0){
+                            ofSetColor(55,149,213,100);
+                            ofEllipse(x*2, y*2,3,3);
+                            ofSetLineWidth(5);
+                            ofLine(flow.x*2, flow.y*2, x*2,y*2);//manually draw values
+                            
+                        }
+                        
+                        
+                        
+                        //yellow colors demo
+                        if(demo == 1){ 
+                            ofColor tempColor = particleBuffer.getColor(x,y);
+                            float brightness = ofMap(tempColor.getBrightness(),0,255, 0,255, true);
+                            //new part
+                            if(abs(flow.x-x) > flowNeeded || abs(flow.y-y)> flowNeeded){
+                                
+                                brightness+=50;
+                            }else{
+                                brightness-=3;
+                                
+                            }
+                            if(brightness < 1){
+                                brightness = 0;
+                            }
+                            if(brightness > 254){
+                                brightness = 255;
+                            }
+                            
+                            particleBuffer.setColor(x,y,brightness);
+                            //    particleBuffer.setColor(x*2, y*2, brightness-2);
+                            //}
+                            ofSetColor(249,170, 41,brightness);
+                            
+                            float randX = ofRandom(-dotRandomness, dotRandomness);
+                            
+                            float randY = ofRandom(-dotRandomness, dotRandomness);
+                            ofEllipse((x*2)+randX, (y*2)+randY, dotSize,dotSize);
+                        }
+                        //for(int i = 0; i<numBubbles;i++){
+                        
+                        // ofSetColor(0,0,255);
+                        //ofEllipse(x*2, y*2, particle[i].z, particle[i].z);
+                        // particle[i].z -=0.01;   
+                        //}
+                    }
+                    
+                }}
+            
+            
+        }
+    } //end demos 0,1
+    
+    //-----start demo 2  squares flying back
+    
+    //brightnessFade
+    //brightnessFalloff
+    //dotRandomness
+    //spacing
+    //dotSize
+    if(demo == 2){
+        if(farneback.hasFlow){
+            
+            for(int x = 0; x< camera.width;x+=spacing2){
+                for(int y = 0; y< camera.height;y+=spacing2){
+                    
+                    ofColor singleColor = HAlogo.getColor(x*2,y*2);
+                    
+                    if(singleColor == ofColor(0,0,0)){
+                        ofVec2f flow = ofVec2f(farneback.getFlowPosition(x,y));  
+                        
+                        
+                        
+                        ofColor tempColor = particleBuffer.getColor(x,y);
+                        float brightness = ofMap(tempColor.getBrightness(),0,255, 0,255, true);
+                        ofSetColor(63,63,63,200);//brand grey
+                        ofLine(x*2, y*2,brightness/10, x*2,y*2,0);//manually draw values
+                        
+                        //new part
+                        if(abs(flow.x-x) > 5 || abs(flow.y-y)> 5){
+                            
+                            brightness+=brightnessFade;
+                        }else{
+                            brightness-=brightnessFalloff;
+                            
+                        }
+                        if(brightness < 1){
+                            brightness = 0;
+                        }
+                        if(brightness > 254){
+                            brightness = 255;
+                        }
+                        
+                        particleBuffer.setColor(x,y,brightness);
+                        //    particleBuffer.setColor(x*2, y*2, brightness-2);
+                        //}
+                        ofSetColor(253,253,253,128);  //brand off-white
+                        
+                        float randX = ofRandom(-dotRandomness, dotRandomness);
+                        
+                        float randY = ofRandom(-dotRandomness, dotRandomness);
+                        ofPushMatrix();
+                        for(int j = 1; j< brightness; j++){
+                            ofTranslate(0,0,j/10);
+                            
+                        }
+                        ofRect((x*2)+randX, (y*2)+randY, dotSize,dotSize);
+                        ofPopMatrix();
+                    }
+                    //for(int i = 0; i<numBubbles;i++){
+                    
+                    // ofSetColor(0,0,255);
+                    //ofEllipse(x*2, y*2, particle[i].z, particle[i].z);
+                    // particle[i].z -=0.01;   
+                    //}
+                    
+                    
+                }}
+            
+            
+            
+        }
+        
+        //--end demo 3
+    }
+    
+    //demo 3  - cone demo
+    if(demo == 3){
+        if(farneback.hasFlow){
+            
+            for(int x = 0; x< camera.width;x+=spacing3){
+                for(int y = 0; y< camera.height;y+=spacing3){
+                    
+                    ofColor singleColor = HAlogo.getColor(x*2,y*2);
+                    
+                    
+                    if(singleColor == ofColor(0,0,0)){
+                        ofVec2f avgFlow = farneback.getAverageFlow();
+                        averageFlow = ofVec2f(avgFlow.x, avgFlow.y);
+                        
+                        ofVec2f flow = ofVec2f(farneback.getFlowPosition(x,y)); 
+                        float transparency = ofMap((abs(flow.x-x)+ abs(flow.y-y)), 0, 255, 20, 150, true);
+                        ofSetColor((flow.y-y)*100,(flow.x-x)*100,0, transparency);
+                        ofPushMatrix();
+                        ofTranslate(320,240);
+                        float rotAmt = ofLerpDegrees(prevAngle, avgFlow.y, smoothAmount);
+                        ofRotateY(180+(rotAmt*30));
+                        ofTranslate(-320,-240);
+                        
+                        ofCone(x*2,y*2,0, 20, coneHeight);
+                        prevAngle = rotAmt;
+                        ofPopMatrix();
+                    }
+                }
+            }}
+    }
+    
+    //demo 4
+    
+    if(demo == 4){
+        
+        //cameraColors.setFromPixels(*camera.ofBaseVideoGrabber::getPixels(), 320, 240, GL_RGB);
+        
+        if(farneback.hasFlow){
+            
+            for(int x = 0; x< camera.width;x+=spacing4){
+                for(int y = 0; y< camera.height;y+=spacing4){
+                    unsigned char * pixels = camera.getPixels();
+                    
+                    
+                    ofColor camColor = ofColor(int(pixels[(y*camera.width + x) * 3]),int(pixels[(y*camera.width + x) * 3+1]),int(pixels[(y*camera.width + x) * 3+2]));
+                    
+                    ofColor singleColor = HAlogo.getColor(x*2,y*2);
+                    
+                    if(singleColor == ofColor(0,0,0)){
+                        ofVec2f flow = ofVec2f(farneback.getFlowPosition(x,y));  
+                        
+                        ofSetColor(camColor);
+                        //ofLine(flow.x*2, flow.y*2, x*2,y*2);//manually draw values
+                        
+                        
+                        //ofColor tempColor = particleBuffer.getColor(x,y);
+                        
+                        ofPushMatrix();
+                        
+                        //     ofRotateY(abs(flow.x-x)*3);
+                        // ofRotateX(abs(flow.y-y)*3);
+                        ofEllipse(x*2, y*2,5+abs(flow.x-x)+abs(flow.y-y),5+abs(flow.x-x)+abs(flow.y-y));
+                        ofPopMatrix();  
+                        
+                        
+                    }
+                }
+                //for(int i = 0; i<numBubbles;i++){
+                
+                // ofSetColor(0,0,255);
+                //ofEllipse(x*2, y*2, particle[i].z, particle[i].z);
+                // particle[i].z -=0.01;   
+                //}
+                
+                
+            }}
+        
+        
+        
+    }
+    
+    //demo 5
+    if(demo == 5){
+        if(farneback.hasFlow){
+            
+            for(int x = 0; x< camera.width;x+=spacing5){
+                for(int y = 0; y< camera.height;y+=spacing5){
+                    
+                    ofColor singleColor = HAlogo.getColor(x*2,y*2);
+                    
+                    if(singleColor == ofColor(0,0,0)){
+                        ofVec2f flow = ofVec2f(farneback.getFlowPosition(x,y));  
+                        
+                        ofSetColor(255,0,0,100);
+                        //ofLine(flow.x*2, flow.y*2, x*2,y*2);//manually draw values
+                        
+                        
+                        ofColor tempColor = particleBuffer.getColor(x,y);
+                        float brightness = ofMap(tempColor.getBrightness(),0,255, 0,255, true);
+                        //new part
+                        if(abs(flow.x-x) > 5 || abs(flow.y-y)> 5){
+                            
+                            brightness+=5;
+                        }else{
+                            brightness-=5;
+                            
+                        }
+                        if(brightness < 1){
+                            brightness = 0;
+                        }
+                        if(brightness > 254){
+                            brightness = 255;
+                        }
+                        
+                        particleBuffer.setColor(x,y,brightness);
+                        
+                        ofPushMatrix();
+                        ofTranslate(x*2, y*2);
+                        ofRotateY(brightness*3);
+                        // ofRotateX(abs(flow.y-y)*3);
+                        
+                        ofEllipse(0, 0,30,30);
+                        ofPopMatrix();  
+                        
+                        
+                    }
+                }
+                //for(int i = 0; i<numBubbles;i++){
+                
+                // ofSetColor(0,0,255);
+                //ofEllipse(x*2, y*2, particle[i].z, particle[i].z);
+                // particle[i].z -=0.01;   
+                //}
+                
+                
+            }}
+        
+        
+        
+    }
+    
+    
+      ofPopMatrix();
 }
 
 void testApp::audioRequested (float * output, int bufferSize, int nChannels){
