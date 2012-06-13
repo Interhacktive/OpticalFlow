@@ -196,7 +196,7 @@ void testApp::update(){
 }
 
 void testApp::draw(){
-	bg.draw(0,0);
+	bg.draw(0,0);//slight change
 		
 	ofSetColor(255);
 	camera.draw(400,100,640,480);
