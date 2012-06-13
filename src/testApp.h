@@ -91,9 +91,10 @@ public:
 	maxiSample samp, samp2, samp3, samp4, samp5;
 	vector<maxiPitchStretch<grainPlayerWin>*> stretches;
 	maxiMix mymix;
+    maxiFilter myFilter;
 	maxiPitchStretch<grainPlayerWin> *ts, *ts2, *ts3, *ts4, *ts5;
 	double speed, grainLength, rate;
-	
+	maxiOsc osc;
 	//ofxMaxiFFT fft;
 	//ofxMaxiFFTOctaveAnalyzer oct;
 	int current;

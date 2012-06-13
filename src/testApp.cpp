@@ -76,10 +76,10 @@ void testApp::setup() {
     
     
     samp.load(ofToDataPath("4.wav"));
-	samp2.load(ofToDataPath("0.wav"));
-	samp3.load(ofToDataPath("0.wav"));
-	samp4.load(ofToDataPath("0.wav"));
-	samp5.load(ofToDataPath("0.wav"));
+	samp2.load(ofToDataPath("DO.wav"));
+	samp3.load(ofToDataPath("sine440.wav"));
+	samp4.load(ofToDataPath("synth.wav"));
+	samp5.load(ofToDataPath("tone.wav"));
      
     //	samp5.load(ofToDataPath("sine1sec.wav"));
 	
@@ -203,6 +203,7 @@ void testApp::draw(){
 	//camera.draw(400,100,640,480);
     ofVec2f flow = farneback.getAverageFlow();
     pos = double(ofMap(flow.y, -3,3,0,0.1));
+    rate = double(ofMap(flow.x, -30,30, 0,10));
 //	curFlow->draw(400,100,640,480);
 	
     
@@ -504,15 +505,19 @@ void testApp::draw(){
 
 void testApp::audioRequested (float * output, int bufferSize, int nChannels){
 	for (int i = 0; i < bufferSize; i++){
-        //		wave = stretches[current]->play(speed, grainLength, 5, 0);
-		//wave = stretches[current]->play(speed*2, rate, 0.1, 4, 0);
-        wave = stretches[current]->play2(pos, 0.1, 4);
+        		//wave = stretches[current]->play(speed, grainLength, 5, 0);
+		//wave = stretches[current]->play(speed*2, rate, 1, 1, 0); //was speed*2, rate, 0.1, 4, 0
+        wave = stretches[current]->play2(pos*2, 0.1,4); //grain and overlap 0.1, 4
         /*	if (fft.process(wave)) {
          oct.calculate(fft.magnitudes);
          }
          */
 		//play result
-		mymix.stereo(wave, outputs, 0.5);
+     //   double mix = myFilter.lopass(samp.play(),0.75); //maxiFilter::lopass(double input, double cutoff)
+       
+       // double alloutput = osc.sinewave(ofGetMouseX()) + osc.sinewave(ofGetMouseY());
+        
+		mymix.stereo(wave, outputs, 0.5); //was wave
         
 		lAudioOut[i] = output[i*nChannels    ] = outputs[0]; 
 		rAudioOut[i] = output[i*nChannels + 1] = outputs[1];
@@ -552,7 +557,11 @@ void testApp::keyPressed(int key){
 			current = 4;
 			break;
             
-	}
+		case 'h':
+            samp2.play();
+    break;
+    
+}
     
 }
 void testApp::keyReleased(int key){
