@@ -1,0 +1,87 @@
+<pyrScale>
+    <val_0>0.5</val_0>
+</pyrScale>
+<levels>
+    <val_0>4</val_0>
+</levels>
+<winsize>
+    <val_0>8</val_0>
+</winsize>
+<iterations>
+    <val_0>2</val_0>
+</iterations>
+<polyN>
+    <val_0>7</val_0>
+</polyN>
+<polySigma>
+    <val_0>1.5</val_0>
+</polySigma>
+<OPTFLOW_FARNEBACK_GAUSSIAN>
+    <val_0>0</val_0>
+</OPTFLOW_FARNEBACK_GAUSSIAN>
+<useFarneback>
+    <val_0>1</val_0>
+</useFarneback>
+<winSize>
+    <val_0>32</val_0>
+</winSize>
+<maxLevel>
+    <val_0>3</val_0>
+</maxLevel>
+<maxFeatures>
+    <val_0>200</val_0>
+</maxFeatures>
+<qualityLevel>
+    <val_0>0.01</val_0>
+</qualityLevel>
+<minDistance>
+    <val_0>4</val_0>
+</minDistance>
+<dotSize>
+    <val_0>8.4</val_0>
+</dotSize>
+<dotRandomness>
+    <val_0>0</val_0>
+</dotRandomness>
+<flowNeeded>
+    <val_0>5</val_0>
+</flowNeeded>
+<spacing>
+    <val_0>3</val_0>
+</spacing>
+<speed>
+    <val_0>0</val_0>
+</speed>
+<grainLength>
+    <val_0>0</val_0>
+</grainLength>
+<rate>
+    <val_0>0</val_0>
+</rate>
+<brightnessFade>
+    <val_0>50</val_0>
+</brightnessFade>
+<brightnessFalloff>
+    <val_0>5</val_0>
+</brightnessFalloff>
+<dotSize2>
+    <val_0>8.4</val_0>
+</dotSize2>
+<spacing2>
+    <val_0>5</val_0>
+</spacing2>
+<smoothAmount>
+    <val_0>0.001</val_0>
+</smoothAmount>
+<coneHeight>
+    <val_0>38</val_0>
+</coneHeight>
+<spacing3>
+    <val_0>10</val_0>
+</spacing3>
+<spacing4>
+    <val_0>5</val_0>
+</spacing4>
+<spacing5>
+    <val_0>20</val_0>
+</spacing5>
